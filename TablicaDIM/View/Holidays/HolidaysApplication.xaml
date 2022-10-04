@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="TablicaDIM.View.Holidays.HolidaysApplication"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"            
+             xmlns:OtherClasses="clr-namespace:TablicaDIM.OtherClasses"
+             xmlns:converts="clr-namespace:TablicaDIM.Converts"
+             xmlns:local="clr-namespace:TablicaDIM.View.Holidays" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converts:BoleanToPLConvert x:Key="BoleanToPLConvert" />
+        <converts:BoleanToLPConvert x:Key="BoleanToLPConvert" />
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ScrollViewer HorizontalAlignment="Center" Margin="10 10 10 30" MaxHeight="850">
+                <DataGrid HorizontalAlignment="Center" Cursor="Hand" ToolTip="Kliknij w nagłówek, aby posortować wolne." 
+                      SelectedItem="{Binding HolidaysListSelect,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectionUnit="FullRow" Style="{StaticResource dataGridStyle}"
+                      ItemsSource="{Binding ContextToDatagrid}">
+                    <DataGrid.Columns>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding UnavailableId}" Header="ID" MaxWidth="65" MinWidth="65" Width="65" />
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding Surname}" Header="Nazwisko" MaxWidth="200" MinWidth="200" Width="200"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding Name}" Header="Imię" MaxWidth="200" MinWidth="200" Width="200"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding AbsentFrom, StringFormat={}{0:dd/MM/yyyy}}" Header="Data rozpoczęcia wolnego" MaxWidth="210" MinWidth="210" Width="210"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding AbsentTo, StringFormat={}{0:dd/MM/yyyy}}" Header="Data zakończenia wolnego" MaxWidth="210" MinWidth="210" Width="210"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding DaysCount}" Header="Ilość dni roboczych" MaxWidth="140" MinWidth="140" Width="140"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding Reason}" Header="Powód" MaxWidth="140" MinWidth="140" Width="140"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding DataOfSend, StringFormat={}{0:dd/MM/yyyy}}" Header="Data złożenia" MaxWidth="180" MinWidth="180" Width="180"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding Accepted, Converter={StaticResource BoleanToPLConvert}}" Header="Wniosek zatwierdzenia" MaxWidth="170" MinWidth="170" Width="170"/>
+                        <materialDesign:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding ToDelete, Converter={StaticResource BoleanToLPConvert}}" Header="Wniosek usunięcia" MaxWidth="210" MinWidth="210" Width="21"/>
+                    </DataGrid.Columns>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="ToolTip" Value="Kliknij, aby otworzyć dodatkowe opcje do wolnego."/>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}"/>
+                                    <Setter Property="Background" Value="{StaticResource firstColorStyle}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                </DataGrid>
+            </ScrollViewer>
+            <materialDesign:ColorZone Visibility="{Binding VisOption,UpdateSourceTrigger=PropertyChanged}" Mode="PrimaryMid" Grid.Row="1" >
+                <TextBlock Padding="16" Text="Decyzja dotycząca wniosku" />
+            </materialDesign:ColorZone>
+            <Button Command="{Binding AcceptCommand}" Visibility="{Binding VisOption,UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource whiteColorStyle}" ToolTip="Kliknij, aby zaakceptować wniosek." Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="0" Margin="0 0 0 -20" Content="{materialDesign:PackIcon Kind=Check, Size=22}" />
+            <Button Command="{Binding DeclineCommand}" Visibility="{Binding VisOption,UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource whiteColorStyle}" ToolTip="Kliknij, aby odrzucić wniosek." Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="0" Margin="0 0 45 -20" Content="{materialDesign:PackIcon Kind=Minus, Size=22}" />
+        </Grid>
+    </StackPanel>
+</UserControl>

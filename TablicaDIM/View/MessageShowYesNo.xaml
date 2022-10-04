@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TablicaDIM.View.MessageShowYesNo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:TablicaDIM.ViewModel"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=mscorlib" 
+             mc:Ignorable="d" VerticalAlignment="Center" HorizontalAlignment="Center" 
+             d:DataContext="{d:DesignInstance viewModel:MessageShowYesNoViewModel}">
+    <Border  BorderBrush="{StaticResource firstColorStyle}" Background="{StaticResource whiteColorStyle}" BorderThickness="1" CornerRadius="3">
+        <StackPanel  Margin="15">
+            <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow" Margin="10" Text="{Binding Text}"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Style="{StaticResource standardLeftButton}" Content="Nie" IsDefault="True" ToolTip="Kliknij, aby zamknąć okno."
+                        Command="{Binding CloseCommand}"/>
+                <Button Style="{StaticResource standardRightButton}" Content="Tak" ToolTip="Kliknij, aby się zgodzić i zamknąć okno."
+                        Command="{Binding CloseTrueCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

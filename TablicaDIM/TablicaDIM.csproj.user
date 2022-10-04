@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ManagmentShop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AccountSettings\AccountChangeInformation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AccountSettings\AccountChangePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AccountSettings\AccountSettings.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Holidays\HolidaysApplication.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Holidays\HolidaysManagment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Home\AddAction.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AddShop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SelectShop.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\FirstLogin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Graphs.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Holidays\FreeDaysManagment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Holidays\Holidays.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Home\AddPersonToWeekend.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Home\ModAction.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Shifts.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopAdministration\ShopGraphSetTarget.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Home\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\MessageShowYesNo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Persons\Persons.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Persons\PersonsAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Persons\PersonsDel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Persons\PersonsMod.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Places\Places.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Places\PlacesAdd.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Places\PlacesDel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Places\PlacesMod.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopAdministration\ShopAdministration.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopAdministration\ShopInactivityChange.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopAdministration\ShopNameChange.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ShopAdministration\ShopOwnerChange.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\WorkInWeekend.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ManagmentShop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AccountSettings\AccountChangeInformation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AccountSettings\AccountChangePassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AccountSettings\AccountSettings.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Holidays\HolidaysApplication.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Holidays\HolidaysManagment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Home\AddAction.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AddShop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SelectShop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\FirstLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Graphs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Holidays\HolidaysCalendar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Holidays\FreeDaysManagment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Holidays\Holidays.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Home\AddPersonToWeekend.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Home\ModAction.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Shifts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopAdministration\ShopGraph.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopAdministration\ShopGraphSetTarget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Home\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\DialogTemplates\MenagmentShopDialogTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MessageShowYesNo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Persons\Persons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Persons\PersonsAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Persons\PersonsDel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Persons\PersonsMod.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Places\Places.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Places\PlacesAdd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Places\PlacesDel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Places\PlacesMod.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopAdministration\ShopAdministration.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopAdministration\ShopInactivityChange.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopAdministration\ShopNameChange.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ShopAdministration\ShopOwnerChange.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\WorkInWeekend.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="TablicaDIM.View.Persons.Persons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"      
+             mc:Ignorable="d">
+    <StackPanel >
+        <TabControl  Margin="0 0 0 0" md:ColorZoneAssist.Mode="Light" md:ShadowAssist.ShadowDepth="Depth1" HorizontalContentAlignment="Center"  
+                    SelectedItem="{Binding SelectedObject,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+            <TabItem ToolTip="Kliknij, aby wybrać zakładkę." Cursor="Hand" Header="{Binding Title}" Content="{Binding InputsVMCon}" DataContext="{Binding VMPersonsAdd}"/>
+            <TabItem ToolTip="Kliknij, aby wybrać zakładkę." Cursor="Hand" Header="{Binding Title}" Content="{Binding InputsVMCon}" DataContext="{Binding VMPersonsMod}"/>
+            <TabItem ToolTip="Kliknij, aby wybrać zakładkę." Cursor="Hand" Visibility="{Binding ManagmentShopViewModel.PermisionAdmin,UpdateSourceTrigger=PropertyChanged}" Header="{Binding Title}" Content="{Binding InputsVMCon}" DataContext="{Binding VMPersonsDel}"/>
+        </TabControl>
+    </StackPanel>
+</UserControl>

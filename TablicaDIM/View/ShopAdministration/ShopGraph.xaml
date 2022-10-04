@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="TablicaDIM.View.ShopAdministration.ShopGraph"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             mc:Ignorable="d" >
+    <StackPanel Margin="10">
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Min procentu awaryjności" MaxLength="6" Text="{Binding MinPercentageOfBreakDowns, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz minimalna wartość procentu awaryjności pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Max procentu awaryjności" MaxLength="6" Text="{Binding MaxPercentageOfBreakDowns, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz maksymalną wartość procentu awaryjności pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Min MTTR" MaxLength="6" Text="{Binding MinChartMTTR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     ToolTip="Wpisz minimalna wartość MTTR pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Max MTTR" MaxLength="6" Text="{Binding MaxChartMTTR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     ToolTip="Wpisz maksymalną wartość MTTR pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="6"   md:HintAssist.Hint="Min MTBF" MaxLength="6" Text="{Binding MinChartMTBF, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz minimalna wartość MTBF pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="6"   md:HintAssist.Hint="Max MTBF" MaxLength="6" Text="{Binding MaxChartMTBF, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz maksymalną wartość MTBF pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Min ilości awarii" MaxLength="6" Text="{Binding MinCountOfBreakDowns, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz minimalna ilość awarii pokazywaną na osi wykresu."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Max ilości awarii" MaxLength="6" Text="{Binding MaxCountOfBreakDowns, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz maksymalną ilość awarii pokazywaną na osi wykresu."/>
+        <Button Grid.Column="1" Command="{Binding SubmitCommand}" IsEnabled="True" Content="Ustaw wartości" Style="{StaticResource standardRightButton}" ToolTip="Kliknij, aby ustawić nowe wartości wskaźników obszaru."/>
+    </StackPanel>
+</UserControl>

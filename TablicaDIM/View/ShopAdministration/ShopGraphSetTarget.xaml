@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="TablicaDIM.View.ShopAdministration.ShopGraphSetTarget"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             mc:Ignorable="d" >
+    <StackPanel Margin="10">
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Cel procentu awaryjności" MaxLength="6" Text="{Binding ChartPercentageOfBreakDowns, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz cel procentu awaryjności."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Cel MTTR" MaxLength="6" Text="{Binding ChartMTTR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     ToolTip="Wpisz cel MTTR."/>
+        <TextBox Style="{StaticResource standardTextBox}" Padding="6"   md:HintAssist.Hint="Cel MTBF" MaxLength="6" Text="{Binding ChartMTBF, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz cel MTBF."/>
+
+        <TextBox Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Cel ilości awarii" MaxLength="6" Text="{Binding ChartCountOfBreakDowns, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz cel ilości awarii."/>
+            <Button Grid.Column="1" Command="{Binding SubmitCommand}" IsEnabled="True" Style="{StaticResource standardRightButton}" Content="Ustaw cele" ToolTip="Kliknij, aby ustawić nowe cele obszaru."/>
+    </StackPanel>
+</UserControl>

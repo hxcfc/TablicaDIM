@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:view="clr-namespace:TablicaDIM.View"
+                    xmlns:viewModel="clr-namespace:TablicaDIM.ViewModel"
+                    xmlns:other="clr-namespace:TablicaDIM.OtherClasses"
+                    xmlns:local="clr-namespace:TablicaDIM">
+    <DataTemplate DataType="{x:Type viewModel:AddShopViewModel}">
+        <view:AddShop />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModel:MessageShowOkViewModel}">
+        <view:MessageShowOk />
+    </DataTemplate>
+</ResourceDictionary>

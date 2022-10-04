@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="TablicaDIM.View.ShopAdministration.ShopOwnerChange"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:converts="clr-namespace:TablicaDIM.Converts"          
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"    
+             xmlns:other="clr-namespace:TablicaDIM.OtherClasses"      
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converts:PermisionIDtoNameConvert x:Key="PermisionIDtoNameConvert" />
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Center">
+        <ScrollViewer HorizontalAlignment="Center" Margin="15" MaxHeight="700">
+            <Grid>
+                <StackPanel HorizontalAlignment="Center" Margin="10">
+                    <TextBlock Margin="13" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Text="Aby zmienić właściciela obszaru, wybierz poniżej nowego właściciela obszaru, potwierdź swoją tożsamość wpisująć hasło właściciela i zatwierdź to przyciskiem."/>
+                    <DataGrid HorizontalAlignment="Center" Cursor="Hand" SelectionUnit="FullRow" Margin="10" ToolTip="Kliknij w nagłówek, aby posortować pracowników.">
+                        <DataGrid.Columns>
+                            <md:DataGridTextColumn Binding="{Binding PersonId}" Header="ID" MaxWidth="65" MinWidth="65" Width="65"/>
+                            <md:DataGridTextColumn Binding="{Binding Name}" Header="Imię" MaxWidth="100" MinWidth="100" Width="100"/>
+                            <md:DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko" MaxWidth="100" MinWidth="100" Width="100"/>
+                            <md:DataGridTextColumn Binding="{Binding Login}" Header="Login" MaxWidth="100" MinWidth="100" Width="100"/>
+                            <md:DataGridTextColumn Binding="{Binding Email}" Header="Email" MaxWidth="300" MinWidth="300" Width="300"/>
+                            <md:DataGridTextColumn Binding="{Binding PermisionId, Converter={StaticResource PermisionIDtoNameConvert}}" Header="Poziom uprawnień" MaxWidth="300" MinWidth="300" Width="300"/>
+                        </DataGrid.Columns>
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                                <Setter Property="ToolTip" Value="Kliknij, aby wybrać pracownika."/>
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/> 
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}"/>
+                                        <Setter Property="Background" Value="{StaticResource firstColorStyle}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <StackPanel>
+            <PasswordBox Style="{StaticResource standardPasswordBox}" Padding="5"   md:HintAssist.Hint="Hasło zalogowanego właściciela" MaxLength="28"
+                                     other:PasswordHelper.Attach="True" other:PasswordHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     ToolTip="Wpisz hasło aktualnie zalogowanego właściciela."/>
+                <Button Grid.Column="1" Command="{Binding SubmitCommand}" IsEnabled="True" Style="{StaticResource standardRightButton}" Content="Zmień właściciela obszaru" ToolTip="Kliknij, aby zmienić właściciela aktualnego obszaru."/>
+            <Label Visibility="{Binding BadNameOrPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="{StaticResource redColorStyle}" Content="Wpisano błędne hasło zalogowanego właściciela."/>
+            <TextBlock Margin="13" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Text="Po zmianie właściciela zostaniesz wylogowany."/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

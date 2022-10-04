@@ -1,0 +1,121 @@
+﻿<Window x:Class="TablicaDIM.ManagmentShop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TablicaDIM"
+        xmlns:view="clr-namespace:TablicaDIM.View"
+        xmlns:viewModel="clr-namespace:TablicaDIM.ViewModel"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"   
+        d:DataContext="{d:DesignInstance viewModel:ManagmentShopViewModel}"
+        Style="{StaticResource managmentShopWindowStyle}"
+        WindowState="{Binding ManagmentShopWindowState, Mode=TwoWay}"
+        Title="Tablica DIM - okno zarządzania obszarem" BorderBrush="{StaticResource firstColorStyle}" BorderThickness="1"  ResizeMode="CanResizeWithGrip"
+        MaxWidth = "{Binding MaximumWidth,UpdateSourceTrigger=PropertyChanged}" MaxHeight = "{Binding MaximumHeight,UpdateSourceTrigger=PropertyChanged}" WindowStartupLocation="CenterOwner"
+        xmlns:converts="clr-namespace:TablicaDIM.Converts"
+       MouseDown="Window_MouseDown">
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="0"
+        ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary>
+            <converts:HolidaysToAcceptConvert x:Key="HolidaysToAcceptConvert" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/View/DialogTemplates/MenagmentShopDialogTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <md:DialogHost IsEnabled="True" x:Name="SecondDialogHost" Identifier="SecondDialogHostId">
+        <md:DrawerHost IsLeftDrawerOpen="{Binding IsMainLeftMenuOpen}">
+            <md:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="220">
+                    <ListBox Margin="0 0 0 10" DockPanel.Dock="Bottom" 
+                             SelectedValue="{Binding SelectedMainMenu, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                              ItemsSource="{Binding MainMenuLower, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignNavigationPrimaryListBox}">
+                        <ListBox.Resources>
+                            <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                        </ListBox.Resources>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}">
+                                <Setter Property="ToolTip" Value="Kliknij, aby wybrać daną operację."/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock ToolTip="Kliknij, aby wybrać daną operację." Text="{Binding}" Margin="24 4 0 4" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Label Margin="10 0 10 10" VerticalAlignment="Center" DockPanel.Dock="Bottom" Visibility="{Binding VisiblityOfLogged}" Content="{Binding WhosLogged}"/>
+                    <Separator Margin="20 0 10 0" DockPanel.Dock="Bottom" Height="30" Background="{StaticResource firstColorStyle}" />
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label VerticalAlignment="Center" Margin="10 0 0 0" FontSize="22" FontWeight="Bold" Content="Menu"/>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" Cursor="Hand" DockPanel.Dock="Top" HorizontalAlignment="Right"  Margin="16" 
+                                      IsChecked="{Binding IsMainLeftMenuOpen}" ToolTip="Kliknij, aby schować menu aplikacji."/>
+                    </DockPanel>
+                    <ListBox  SelectedValue="{Binding SelectedMainMenu, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                             ItemsSource="{Binding MainMenuUpper, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MaterialDesignNavigationPrimaryListBox}">
+                        <ListBox.Resources>
+                            <Style TargetType="ScrollBar" BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"/>
+                        </ListBox.Resources>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignNavigationPrimaryListBoxItem}">
+                                <Setter Property="ToolTip" Value="Kliknij, aby wybrać daną operację."/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="local:IMenuItem">
+                                <TextBlock  Text="{Binding}" Margin="24 4 0 4"  />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </md:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+                <md:Snackbar DockPanel.Dock="Bottom" MessageQueue="{Binding BoundMessageQueue}" IsActive="False" HorizontalAlignment="Stretch"/>
+                <md:ColorZone Padding="16" Mode="PrimaryMid" DockPanel.Dock="Top">
+                    <Grid>
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" Cursor="Hand" HorizontalAlignment="Left" Foreground="{StaticResource whiteColorStyle}" IsChecked="{Binding IsMainLeftMenuOpen}" 
+                                      ToolTip="Kliknij, aby pokazać menu aplikacji."/>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource redColorStyle}" 
+                                   FontSize="22" FontWeight="ExtraBlack" md:ShadowAssist.ShadowDepth="Depth5" md:ShadowAssist.ShadowEdges="Bottom" Visibility="{Binding IsInactive}"  Text="Zarchiwizowany"/>
+
+                            <StackPanel Cursor="Hand" ToolTip="Kliknij, aby otworzyć stronę główną obszaru." Orientation="Horizontal">
+                                <md:PackIcon Width="30" Height="30" Margin="0 10 5 0" VerticalAlignment="Center" Kind="Home" />
+                                <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0 10 0 0 " FontSize="22" Foreground="{StaticResource whiteColorStyle}" Text="{Binding SelectedShopFromFirstWindow.ShopName, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                   ToolTip="Aby zmienić wyświetlany obszar przejdz do menu po lewej stronie oraz kliknij przycisk 'Powrót do okna wyboru obszaru'."/>
+                            </StackPanel>
+                            <StackPanel.InputBindings>
+                                <MouseBinding Gesture="LeftClick" Command="{Binding OpenHomePageCommand}" />
+                            </StackPanel.InputBindings>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Top">
+                            <Button Command="{Binding MinWindowCommand}" Style="{StaticResource minimalizeManButton}" ToolTip="Kliknij, aby zminimalizować obszar aplikacji."/>
+                            <Button Command="{Binding NormWindowCommand}" Visibility="{Binding IsVisibleNorm}" Style="{StaticResource normManButton}" ToolTip="Kliknij, aby zmniejszyć obszar aplikacji."/>
+                            <Button Command="{Binding MaxWindowCommand}" Visibility="{Binding IsVisibleMax}" Style="{StaticResource maximalizeManButton}" ToolTip="Kliknij, aby zmaksymalizować obszar aplikacji."/>
+                            <Button Command="{Binding CloseWindowCommand}" Style="{StaticResource exitManButton}" ToolTip="Kliknij, aby zamknąć aplikację."/>
+                        </StackPanel>
+                    </Grid>
+                </md:ColorZone>
+                <Grid DockPanel.Dock="Bottom"  Margin="20 20 20 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions >
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Source="/Images/Logo_right.png"  />
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="1"  Content="{Binding ActualTime, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                <Viewbox VerticalAlignment="Top" StretchDirection="DownOnly" Stretch="Fill">
+                    <ContentControl Content="{Binding ContentManagmentShop}"/>
+                </Viewbox>
+            </DockPanel>
+        </md:DrawerHost>
+    </md:DialogHost>
+</Window>

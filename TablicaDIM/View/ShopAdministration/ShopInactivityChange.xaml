@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TablicaDIM.View.ShopAdministration.ShopInactivityChange"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:other="clr-namespace:TablicaDIM.OtherClasses"     
+             mc:Ignorable="d">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Margin="10">
+            <TextBlock Margin="13 13 13 0" TextWrapping="WrapWithOverflow" TextAlignment="Center" Text="Zmiana statusu obszaru przenosi go do zarchiwizowanych obszarów, bądź go przywraca.&#x0a;Gdy obszar jest w archiwum to do obszaru będzie mógł zalogować się tylko użytkownik z prawami właściciela. Jego zakres uprawnień zmniejszy się do możliwości modyfikacji akcji, zmiany nazwy obszaru oraz do ponownego aktywowania obszaru." />
+            <TextBlock Margin="13" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Text="Aby zmienić status obszaru, potwierdź  to zaznaczając checkboxa oraz potwierdź swoją tożsamość wpisująć hasło właściciela i zatwierdź to przyciskiem."/>
+
+           <CheckBox Margin="13" HorizontalAlignment="Center" IsChecked="{Binding IsCheckedChangeActiviti,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Content="Potwierdź chęć zmiany statusu obszaru."/>
+            <PasswordBox Style="{StaticResource standardPasswordBox}" Padding="5"   md:HintAssist.Hint="Hasło zalogowanego właściciela" MaxLength="28"
+                                     other:PasswordHelper.Attach="True" other:PasswordHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     ToolTip="Wpisz hasło aktualnie zalogowanego właściciela."/>
+                <Button Grid.Column="1" ToolTip="Kliknij, aby zmienić status obszaru." Style="{StaticResource standardRightButton}" Command="{Binding SubmitCommand}" IsEnabled="True" Content="Zmień status obszaru"/>
+            <Label Visibility="{Binding BadNameOrPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="{StaticResource redColorStyle}" Content="Wpisano błędne hasło zalogowanego właściciela."/>
+        </StackPanel>
+    </Grid>
+</UserControl>

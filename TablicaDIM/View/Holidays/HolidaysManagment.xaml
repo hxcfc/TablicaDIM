@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="TablicaDIM.View.Holidays.HolidaysManagment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TablicaDIM.View.Holidays" xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"              xmlns:converts="clr-namespace:TablicaDIM.Converts"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converts:HolidayStopConvert x:Key="HolidayStopConvert" />
+    </UserControl.Resources>
+    <StackPanel Margin="15 20 15 0">
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="Tylko właściciele obszarów mają dostęp do tego okna. Ustawiane są tu dni wolne (święta/postoje) dla wszystkich obszarów."/>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="Pamiętaj, że dodanie/modyfikowanie/usuwanie wolnego NIE WPŁYWA na istniejące już wolne pracowników."/>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="Aby odpowiednio naliczało dni wolne - usuń i dodaj jeszcze raz urlop pracownikowi."/>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Text="Przy ustawianiu aktualnego roku w wolnych, pamiętaj o prawidłowym ustawieniu dat świąt ruchomych oraz zmian dat postoju."/>
+            <TextBlock Foreground="{StaticResource redColorStyle}" TextWrapping="Wrap" HorizontalAlignment="Center" Text="Każda operacja ma wpływ na wszystkie obszary."/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding OpenPopoutCommand}" ToolTip="Kliknij, aby otworzyć okno dodwania wolnego." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Content="Dodaj wolne"/>
+                <Button Command="{Binding ChangeYearCommand}" ToolTip="Kliknij, aby ustawić aktualny rok wszystkich wolnych." VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Content="Ustaw aktualny rok w poniższych wolnych"/>
+            </StackPanel>
+            <Popup  StaysOpen="False"  Placement="Bottom" HorizontalOffset="{Binding HorizonAligm, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="{Binding VertiAligm, UpdateSourceTrigger=PropertyChanged}" PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" IsOpen="{Binding IsOpenPopout,UpdateSourceTrigger=PropertyChanged}">
+                <Border BorderBrush="{StaticResource firstColorStyle}" Background="{StaticResource whiteColorStyle}" BorderThickness="1">
+                    <Grid Margin="10">
+                        <StackPanel  Orientation="Vertical" >
+                            <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource blackColorStyle}" Text="Wolne:" FontWeight="bold"/>
+
+                            <DatePicker  Grid.Row="1" Language="pl-PL" DisplayDateStart="{Binding MinDate}" DisplayDateEnd="{Binding MaxDate}" 
+                                        Text="{Binding StartHolidayDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        ToolTip="Wybierz datę rozpoczęcia wolnego." Style="{StaticResource standardDatePickerBox}" 
+                                        Padding="5"   md:HintAssist.Hint="Data rozpoczęcia wolnego"  />
+                            <DatePicker  Grid.Row="1" Language="pl-PL" DisplayDateStart="{Binding MinDate}" DisplayDateEnd="{Binding MaxDate}" 
+                                        Text="{Binding EndHolidayDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        ToolTip="Wybierz datę zakończenia wolnego." Style="{StaticResource standardDatePickerBox}" 
+                                        Padding="5"   md:HintAssist.Hint="Data zakończenia wolnego"  />
+                            <StackPanel Margin="13" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center" Text="Ilość dni wolnego: " FontWeight="bold"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding CountOfDays,UpdateSourceTrigger=PropertyChanged}" FontWeight="bold"/>
+                            </StackPanel>
+                            <TextBox Margin="13" Style="{StaticResource standardTextBox}" Padding="5"   md:HintAssist.Hint="Nazwa wolnego"
+                                     MaxLength="49" Text="{Binding NameHoliday, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Wpisz nazwę wolnego. Musi się zaczynać od wielkiej litery, mieć minimum 5 znaków i mniej niż 49."/>
+                            <CheckBox Margin="13" IsChecked="{Binding ItsFreeDay,UpdateSourceTrigger=PropertyChanged}" Content="Czy pokazuje jako święto? (Zaznaczy by w kalendarzu nie móc brać wtedy wolne.)"/>
+                            <Grid>
+                                <Grid Visibility="{Binding VisiblityOfMod,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" >
+                                    <Button Grid.Column="1" Command="{Binding ModCommand,UpdateSourceTrigger=PropertyChanged}" IsEnabled="True" Style="{StaticResource standardRightButton}" Content="Modyfikuj wolne" ToolTip="Kliknij, aby zmienić wolne."/>
+
+                                </Grid>
+                                <Grid Visibility="{Binding VisiblityOfAdd,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" >
+                                    <Button Grid.Column="1" Command="{Binding AddCommand,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource standardRightButton}" IsEnabled="True" Content="Zapisz wolne" ToolTip="Kliknij, aby dodać wolne."/>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Popup>
+        </StackPanel>
+        <ScrollViewer HorizontalAlignment="Center" MaxHeight="600"  Margin="25 10 15 0">
+            <DataGrid HorizontalAlignment="Center" Cursor="Hand" ToolTip="Kliknij w nagłówek, aby posortować wolne." 
+                      SelectedItem="{Binding SelectedItem,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectionUnit="FullRow" Style="{StaticResource dataGridStyle}"
+                      ItemsSource="{Binding ContextToDatagrid}">
+                <DataGrid.Columns>
+                    <md:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding HolidayId}" Header="ID" MaxWidth="65" MinWidth="65" Width="65" />
+                    <md:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding DateFrom, StringFormat={}{0:dd/MM/yyyy}}" Header="Data rozpoczęcia wolnego" MaxWidth="210" MinWidth="210" Width="210"/>
+                    <md:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding DateTo, StringFormat={}{0:dd/MM/yyyy}}" Header="Data zakończenia wolnego" MaxWidth="210" MinWidth="210" Width="210"/>
+                    <md:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding Name}" Header="Nazwa wolnego" MaxWidth="140" MinWidth="140" Width="140"/>
+                    <md:DataGridTextColumn ElementStyle="{StaticResource  DatagridTextBlockStyle}" Binding="{Binding ItsFreeDay, Converter={StaticResource HolidayStopConvert}}" Header="Czy pokazuje jako święto" MaxWidth="180" MinWidth="180" Width="180"/>
+                </DataGrid.Columns>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                        <Setter Property="ToolTip" Value="Kliknij, aby otworzyć dodatkowe opcje do wolnego."/>
+                        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}"/>
+                                <Setter Property="Background" Value="{StaticResource firstColorStyle}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </ScrollViewer>
+        <StackPanel Margin="10">
+            <StackPanel IsEnabled="{Binding IsSelectedItem, UpdateSourceTrigger=PropertyChanged}" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button ToolTip="Kliknij, aby usunąć wybrane wolne." Command="{Binding DelCommand,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource standardLeftButton}" IsEnabled="True" Content="Usuń wolne" />
+                <Button ToolTip="Kliknij, aby otworzyć okno modyfikowania wolnego." Command="{Binding OpenModPopoutCommand,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource standardRightButton}" IsEnabled="True" Content="Modyfikuj wolne"  />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>

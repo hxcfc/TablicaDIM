@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TablicaDIM": {
+      "commandName": "Project",
+      "sqlDebugging": false,
+      "remoteDebugEnabled": false,
+      "nativeDebugging": false
+    }
+  }
+}

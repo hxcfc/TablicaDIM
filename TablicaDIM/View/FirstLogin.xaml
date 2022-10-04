@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="TablicaDIM.View.FirstLogin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:TablicaDIM.ViewModel"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:other="clr-namespace:TablicaDIM.OtherClasses"
+             mc:Ignorable="d"  d:DataContext="{d:DesignInstance viewModel:FirstLoginViewModel}">
+    <Border  BorderBrush="{StaticResource firstColorStyle}" Background="{StaticResource whiteColorStyle}" BorderThickness="1" CornerRadius="3">
+    <StackPanel Margin="15">
+            <Label VerticalAlignment="Center" Margin="10 0 0 0" FontSize="22" FontWeight="Bold" Content="Panel pierwszego logowania"/>
+            <TextBlock Margin="0 0 0 10" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Przy pierwszym logowaniu należy ustawić nowe hasło, które musi mieć minimum 3 znaki i maksimum 28 znaków."/>
+            <PasswordBox MaxLength="28" Style="{StaticResource standardPasswordBox}" Padding="5"    md:HintAssist.Hint="Nowe hasło użytkownika" other:PasswordHelper.Attach="True"
+                         other:PasswordHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Wpisz nowe hasło aktualnie zalogowanego użytkownika. Minimalnie 3 znaki, maksymalnie 28."/>
+            <PasswordBox MaxLength="28" Style="{StaticResource standardPasswordBox}" Padding="5"    md:HintAssist.Hint="Powtórz nowe hasło użytkownika" 
+                     other:PasswordHelper.Attach="True" other:PasswordHelper.Password="{Binding ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Dla potwierdzenia powtórz hasło aktualnie zalogowanego użytkownika."/>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{x:Static md:DialogHost.CloseDialogCommand}" CommandParameter="null" Style="{StaticResource standardLeftButton}"  ToolTip="Kliknij, aby wylogować się bez zmiany hasła." Content="Anuluj"/>
+                <Button Grid.Column="1" Command="{Binding SubmitCommand}"  Style="{StaticResource standardRightButton}" Content="Ustaw hasło" ToolTip="Kliknij, aby ustawić nowe hasło."/>
+            </Grid>
+            <Label Visibility="{Binding BadNameOrPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="{StaticResource redColorStyle}" Content="Wpisano błędnie hasło i/lub powtórzenie hasła."/>
+    </StackPanel>
+    </Border>
+</UserControl>

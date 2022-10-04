@@ -1,0 +1,78 @@
+﻿<Window x:Class="TablicaDIM.SelectShop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:TablicaDIM.View"
+        xmlns:viewModel="clr-namespace:TablicaDIM.ViewModel"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"  Style="{StaticResource selectShopWindowStyle}"     
+        Title="Tablica DIM - okno wyboru obszaru" 
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <md:DialogHost x:Name="RootDialogHost" Identifier="RootDialogHostId">
+        <Grid  Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="520"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Style="{StaticResource exitButton}" Command="{Binding CloseWindowCommand}" ToolTip="Kliknij, aby zamknąć aplikację."/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="160"/>
+                    <RowDefinition Height="180"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="125"/>
+                </Grid.RowDefinitions>
+                <Image  Grid.Row="0" Style="{StaticResource logoSelectShopImageStyle}"  Source="../Images/Logo.png"/>
+                <ListBox Grid.Row="1" Style="{StaticResource listShopsSelectShopListBoxStyle}" SelectedItem="{Binding SelectedShopFromListBox, Mode=TwoWay}" ItemContainerStyle="{StaticResource listShopsItemSelectShopListBoxItemStyle}" 
+                         ItemsSource="{Binding Path=TblShops, IsAsync=True}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock >
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{} {0}">
+                                        <Binding Path="ShopName"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <StackPanel Margin="0 5 0 0" Grid.Row="2"  >
+                    <StackPanel Style="{StaticResource centerHorizontalStackPanelStyle}"  ToolTip="Zaznacz, jeśli chcesz by lista odświeżała się automatycznie.">
+                        <Border CornerRadius="3" VerticalAlignment="Center" Background="{StaticResource whiteColorStyle}">
+                            <CheckBox IsEnabled="{Binding CanClickBool,UpdateSourceTrigger=PropertyChanged}" IsChecked="{Binding IsSelectedAutomaticRefCheckBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource MaterialDesignCheckBox}"/>
+                        </Border>
+                        <Label Foreground="{StaticResource whiteColorStyle}" Content="Automatyczne odświeżanie aplikacji."/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource centerHorizontalStackPanelStyle}"  ToolTip="Zaznacz, jeśli chcesz by wybrany obszar otwierał się automatycznie po włączeniu aplikacji.">
+                        <Border CornerRadius="3" VerticalAlignment="Center" Background="{StaticResource whiteColorStyle}">
+                            <CheckBox IsEnabled="{Binding CanClickBool,UpdateSourceTrigger=PropertyChanged}" IsChecked="{Binding IsSelectedShopCheckBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Style="{StaticResource MaterialDesignCheckBox}"/>
+                        </Border>
+                        <Label Foreground="{StaticResource whiteColorStyle}" Content="Otwieraj wybrany obszar automatycznie."/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button IsEnabled="{Binding CanClickBool,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource inactieShopsButton}" Foreground="{Binding ButtonArchiv, UpdateSourceTrigger=PropertyChanged}" ToolTip="Kliknij, aby przejść do okna z nieaktywnymi obszarami." Command="{Binding ShowInactiveShopCommand}"/>
+                        <Button IsEnabled="{Binding CanClickBool,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource addShopButton}" ToolTip="Kliknij, aby przejść do okna dodawania obszaru." Command="{Binding ShowAddShopFormCommand}"/>
+                    </StackPanel>
+                    <Border  Visibility="{Binding StatusVis, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="30"   Background="{StaticResource whiteTransparentColorStyle}" BorderThickness="1">
+                        <StackPanel VerticalAlignment="Center"  HorizontalAlignment="Center" >
+                            <Label  Foreground="{StaticResource lightGrayColorStyle}" FontSize="12" Content="{Binding StatusString,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </Border>
+                    <StackPanel  Grid.Row="3" Style="{StaticResource centerSelectShopStackPanelStyle}" Orientation="Horizontal">
+                        <TextBlock Text="Stworzone przez" />
+                        <TextBlock Foreground="{StaticResource firstColorStyle}" Text=" Przemysław Łaskawiec " />
+                        <TextBlock Text="@2021." />
+                    </StackPanel>
+                </StackPanel>
+                
+            </Grid>
+        </Grid>
+    </md:DialogHost>
+</Window>

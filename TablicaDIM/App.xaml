@@ -1,0 +1,511 @@
+﻿<Application x:Class="TablicaDIM.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TablicaDIM"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="SelectShop.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme  BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="LightBlue" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="White"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <!--COLORS-->
+            <SolidColorBrush x:Key="transparentColorStyle" Color="Transparent" />
+            <SolidColorBrush x:Key="whiteColorStyle" Color="#ffffff" />
+            <SolidColorBrush x:Key="whiteTransparentColorStyle" Color="#1Affffff" />
+            <SolidColorBrush x:Key="blackColorStyle" Color="#000000" />
+            <SolidColorBrush x:Key="blackTransparentColorStyle" Color="#1A0000" />
+            <SolidColorBrush x:Key="redColorStyle" Color="#E04343" />
+            <SolidColorBrush x:Key="redTransparentColorStyle" Color="#BFE04343" />
+            <SolidColorBrush x:Key="yellowColorStyle" Color="#FFFF99" />
+            <SolidColorBrush x:Key="orangeColorStyle" Color="#FF9800" />
+            <SolidColorBrush x:Key="grayColorStyle" Color="#7A7A7A" />
+            <SolidColorBrush x:Key="lightGrayColorStyle" Color="#dbdbdb" />
+            <SolidColorBrush x:Key="greenColorStyle" Color="#32cd32" /> 
+            <SolidColorBrush x:Key="greenLightColorStyle" Color="#74c84c" /> 
+            <SolidColorBrush x:Key="firstColorStyle" Color="#2196F3" />
+            <SolidColorBrush x:Key="secondColorStyle" Color="#FF04115F" />
+
+            
+            
+            <Style TargetType="{x:Type ResizeGrip}">
+                <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+                <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ResizeGrip}">
+                            <Grid SnapsToDevicePixels="True" Background="{TemplateBinding Background}">
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Visibility" Value="Hidden"/>
+            </Style>
+            <SolidColorBrush x:Key="ResizeGripperForeground" Color="#B8B4A2"/>
+            <Style x:Key="VisibleResizeGrip" TargetType="{x:Type ResizeGrip}">
+                <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+                <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ResizeGrip}">
+                            <Grid SnapsToDevicePixels="True" Background="{TemplateBinding Background}">
+                                <Path Fill="White" HorizontalAlignment="Right" Margin="0,0,2,2" VerticalAlignment="Bottom" Data="M 8,0 L 10,0 L 10,2 L 8,2 Z M 4,4 L 6,4 L 6,6 L 4,6 Z M 8,4 L 10,4 L 10,6 L 8,6 Z M 0,8 L 2,8 L 2,10 L 0,10 Z M 4,8 L 6,8 L 6,10 L 4,10 Z M 8,8 L 10,8 L 10,10 L 8,10 Z"/>
+                                <Path Fill="{StaticResource ResizeGripperForeground}" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Data="M 8,0 L 10,0 L 10,2 L 8,2 Z M 4,4 L 6,4 L 6,6 L 4,6 Z M 8,4 L 10,4 L 10,6 L 8,6 Z M 0,8 L 2,8 L 2,10 L 0,10 Z M 4,8 L 6,8 L 6,10 L 4,10 Z M 8,8 L 10,8 L 10,10 L 8,10 Z"/>
+                                <Path Data="M8,0L10,0 10,2 8,2z M4,4L6,4 6,6 4,6z M8,4L10,4 10,6 8,6z M0,8L2,8 2,10 0,10z M4,8L6,8 6,10 4,10z M8,8L10,8 10,10 8,10z" Fill="White" HorizontalAlignment="Right" Margin="0,0,2,2" VerticalAlignment="Bottom" />
+                                <Path Data="M8,0L10,0 10,2 8,2z M4,4L6,4 6,6 4,6z M8,4L10,4 10,6 8,6z M0,8L2,8 2,10 0,10z M4,8L6,8 6,10 4,10z M8,8L10,8 10,10 8,10z" Fill="{StaticResource ResizeGripperForeground}" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--WINDOW STYLES-->
+            <Style x:Key="windowStyle" TargetType="{x:Type Window}">
+                <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+                <Setter Property="Icon" Value="/Images/test.ico" />
+            </Style>
+            <Style x:Key="managmentShopWindowStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource windowStyle}">
+                <Setter Property="Foreground" Value="{StaticResource blackColorStyle}" />
+                <Setter Property="Background" Value="{StaticResource whiteColorStyle}" />
+                <Setter Property="WindowStyle" Value="None" />
+                <Setter Property="AllowsTransparency" Value="False" />
+                <Setter Property="ResizeMode" Value="NoResize" />
+            </Style>
+            <Style x:Key="selectShopWindowStyle" TargetType="{x:Type Window}" BasedOn="{StaticResource windowStyle}">
+                <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                <Setter Property="Background" Value="{StaticResource transparentColorStyle}" />
+                <Setter Property="Width" Value="450" />
+                <Setter Property="Height" Value="550" />
+                <Setter Property="WindowState" Value="Normal" />
+                <Setter Property="ResizeMode" Value="NoResize" />
+                <Setter Property="WindowState" Value="Normal" />
+                <Setter Property="WindowStyle" Value="None" />
+                <Setter Property="AllowsTransparency" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Window}" x:Name="DialogBoxTemplate">
+                            <Border CornerRadius="3" BorderThickness="1">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="2" BlurRadius="4" RenderingBias="Quality"  Opacity="0.6" Direction="290" />
+                                </Border.Effect>
+                                <Grid Margin="5,0,5,5">
+                                    <Grid.Background>
+                                        <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Fill" />
+                                    </Grid.Background>
+                                    <Border CornerRadius="3" BorderThickness="1">
+                                        <Grid >
+                                            <AdornerDecorator>
+                                                <ContentPresenter x:Name="WindowContent"/>
+                                            </AdornerDecorator>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--IMAGES STYLES-->
+            <Style x:Key="logoSelectShopImageStyle" TargetType="{x:Type Image}">
+                <Setter Property="Height" Value="160"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+
+            <Style TargetType="{x:Type ToolTip}">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding}"  MaxWidth="400" TextAlignment="Center" TextWrapping='Wrap' />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--LISTBOX STYLES-->
+            <Style x:Key="listShopsSelectShopListBoxStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource MaterialDesignListBox}">
+                <Setter Property="Margin" Value="15 15 15 5"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+                <Setter Property="Height" Value="160"/>
+                <Setter Property="Width" Value="350"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}"/>
+                <Setter Property="SelectionMode" Value="Single"/>
+            </Style>
+            <!--LISTBOXITEM STYLES-->
+            <Style x:Key="listShopsItemSelectShopListBoxItemStyle" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="ToolTip" Value="Kliknij, aby przejść do okna wybranego obszaru."/>
+                <Setter Property="Padding" Value="0 4 0 4"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                        <Setter Property="Background" Value="{StaticResource whiteTransparentColorStyle}" />
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                        <Setter Property="Background" Value="{StaticResource transparentColorStyle}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--DataGrid STYLES-->
+            <Style x:Key="dataGridStyle" TargetType="{x:Type DataGrid}">
+                <Setter Property="AutoGenerateColumns" Value="False"/>
+                <Setter Property="SelectionMode" Value="Single"/>
+                <Setter Property="Background" Value="{StaticResource whiteColorStyle}"/>
+                <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource lightGrayColorStyle}"/>
+                <Setter Property="VerticalGridLinesBrush" Value="{StaticResource lightGrayColorStyle}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource transparentColorStyle}"/>
+                <Setter Property="HeadersVisibility" Value="Column"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
+                <Setter Property="GridLinesVisibility" Value="None"/>
+                <Setter Property="SelectionUnit" Value="FullRow"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="CanUserResizeColumns" Value="true"/>
+                <Setter Property="CanUserAddRows" Value="false"/>
+                <Setter Property="CanUserReorderColumns" Value="false"/>
+                <Setter Property="CanUserDeleteRows" Value="false"/>
+            </Style>
+            <!--STACKPANEL STYLES-->
+            <Style x:Key="centerStackPanelStyle" TargetType="{x:Type StackPanel}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="centerHorizontalStackPanelStyle" TargetType="{x:Type StackPanel}" BasedOn="{StaticResource centerStackPanelStyle}">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+            <Style x:Key="centerSelectShopStackPanelStyle" TargetType="{x:Type StackPanel}" BasedOn="{StaticResource centerStackPanelStyle}">
+                <Setter Property="TextBlock.FontSize" Value="9"/>
+                <Setter Property="Margin" Value="0 0 0 0"/>
+            </Style>
+            <!--TEXT BLOCK STYLES-->
+            <Style x:Key="standardTextCenterStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="standardTittleStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource standardTextCenterStyle}">
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style x:Key="addShopTittleStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource standardTittleStyle}">
+                <Setter Property="FontSize" Value="19"/>
+                <Setter Property="Foreground" Value="{StaticResource secondColorStyle}"/>
+            </Style>
+            <Style x:Key="standardTextInAddFormStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="TextAlignment" Value="Left"/>
+            </Style>
+            <Style x:Key="DatagridTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="TextWrapping" Value="Wrap"/>
+
+                <Setter Property="MaxHeight" Value="120"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="countWorkersLabelStyle" TargetType="Label">
+                <Setter Property="BorderBrush" Value="{StaticResource lightGrayColorStyle}"/>
+                <Setter Property="Width" Value="80"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="workWeekendLabelStyle" TargetType="Label">
+                <Setter Property="BorderBrush" Value="{StaticResource lightGrayColorStyle}"/>
+                <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <!--TEXT BOX STYLES-->
+            <Style x:Key="standardTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+                <Setter Property="Margin" Value="13" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="Width" Value="250" />
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
+                <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="0" />
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+                <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="0,-15" />
+                <Setter Property="materialDesign:HintAssist.FloatingScale" Value="1" />
+            </Style>
+            <!--DATEPICKER BOX STYLES-->
+            <Style x:Key="standardDatePickerBox" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+                <Setter Property="Margin" Value="13" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="Width" Value="250" />
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
+                <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="0" />
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+                <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="0,-15" />
+                <Setter Property="materialDesign:HintAssist.FloatingScale" Value="1" />
+            </Style>
+            <!--PASSWORD BOX STYLES-->
+            <Style x:Key="standardPasswordBox" TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
+
+                <Setter Property="Margin" Value="13" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="Width" Value="250" />
+                <Setter Property="PasswordChar" Value="*" />
+                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
+                <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="0" />
+                <Setter Property="materialDesign:TextFieldAssist.HasClearButton" Value="True" />
+                <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="0,-15.5" />
+                <Setter Property="materialDesign:HintAssist.FloatingScale" Value="1" />
+            </Style>
+            <!--BUTTON STYLES-->
+            <!-- Exit button -->
+            <Style x:Key="exitButton" TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Foreground" Value="{StaticResource redTransparentColorStyle}"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <materialDesign:PackIcon Background="{StaticResource transparentColorStyle}" Kind="CloseBoxOutline" VerticalAlignment="Center" HorizontalAlignment="Center" Width="35" Height="35" Margin="-3" />
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource redColorStyle}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- Add shop button -->
+            <Style x:Key="addShopButton" TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="addShopButtonBorder" CornerRadius="1" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="40" Height="40" Foreground="{StaticResource firstColorStyle}" Margin="0 3 0 0" Kind="Plus" />
+                                    <TextBlock Margin="0 0 10 0" VerticalAlignment="Center">Obszar</TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                                    <Setter Property="Background" Value="{StaticResource whiteTransparentColorStyle}" TargetName="addShopButtonBorder" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="inactieShopsButton" TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="inactieShopsButtonBorder" CornerRadius="1" BorderThickness="0">
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="30" Height="30" Foreground="{StaticResource firstColorStyle}" Margin="0 5 0 0" Kind="ArchiveLockOutline" />
+                                    <TextBlock Margin="10 0 10 0" VerticalAlignment="Center">Archiwum</TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                                    <Setter Property="Background" Value="{StaticResource whiteTransparentColorStyle}" TargetName="inactieShopsButtonBorder" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="settingsManTemplateButton" TargetType="Button">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Foreground" Value="{StaticResource whiteColorStyle}" />
+
+            </Style>
+            <Style x:Key="normManButton" TargetType="Button" BasedOn="{StaticResource settingsManTemplateButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="1" Background="{StaticResource transparentColorStyle}" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="25" Height="25"  Margin="0 3 0 0" Kind="WindowRestore" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="minimalizeManButton" TargetType="Button" BasedOn="{StaticResource settingsManTemplateButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="1" Background="{StaticResource transparentColorStyle}" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="20" Height="20"  Margin="0 3 0 0" Kind="WindowMinimize" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="maximalizeManButton" TargetType="Button" BasedOn="{StaticResource settingsManTemplateButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="1" Background="{StaticResource transparentColorStyle}" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="20" Height="20" Margin="0 3 0 0" Kind="WindowMaximize" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="exitManButton" TargetType="Button" BasedOn="{StaticResource settingsManTemplateButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="1" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="20" Height="20"  Margin="0 3 0 0" Kind="WindowClose" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="plusManButton" TargetType="Button" BasedOn="{StaticResource settingsManTemplateButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <StackPanel  Orientation="Horizontal">
+                                <materialDesign:PackIcon  Width="20" Height="20" Margin="0 2 0 0" Foreground="{StaticResource firstColorStyle}" Kind="Plus" />
+                                <TextBlock Foreground="{StaticResource firstColorStyle}" VerticalAlignment="Center" Text="Pracownik"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="minusManButton" TargetType="Button" BasedOn="{StaticResource settingsManTemplateButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <StackPanel  Orientation="Horizontal">
+                                <materialDesign:PackIcon  Width="20" Height="20" Margin="0 2 0 0" Foreground="{StaticResource redColorStyle}" Kind="Minus" />
+                                <TextBlock Foreground="{StaticResource redColorStyle}" VerticalAlignment="Center" Text="Pracownik"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- Standard button -->
+            <Style x:Key="standardButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+            <!-- Standard left side button -->
+            <Style x:Key="standardLeftButton" TargetType="Button" BasedOn="{StaticResource standardButton}">
+                <Setter Property="Margin" Value="0 10 5 0"/>
+                <Setter Property="IsCancel" Value="True"/>
+            </Style>
+            <!-- Standard right side button -->
+            <Style x:Key="standardRightButton" TargetType="Button" BasedOn="{StaticResource standardButton}">
+                <Setter Property="Margin" Value="5 10 0 0"/>
+                <Setter Property="IsDefault" Value="true"/>
+            </Style>
+            <!-- SCROLL SELECT SHOP STYLE -->
+            <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Grid x:Name="Grid">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="10" Height="30" Fill="Transparent" />
+                                <Border x:Name="ScrollBarRectangle" CornerRadius="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="20" Height="auto"
+                                        Background="{TemplateBinding Background}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Tag" Value="Horizontal">
+                                    <Setter TargetName="ScrollBarRectangle" Property="Width" Value="30" />
+                                    <Setter TargetName="ScrollBarRectangle" Property="Height" Value="7" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="{x:Type ScrollBar}">
+                <Setter Property="Margin" Value="-10,0,0,0" />
+                <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+                <Setter Property="Foreground" Value="{StaticResource firstColorStyle}" />
+                <Setter Property="Background" Value="{StaticResource transparentColorStyle}" />
+                <Setter Property="Width" Value="8" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="GridRoot" Width="8"  Background="{TemplateBinding Background}">
+                                <Track x:Name="PART_Track" IsDirectionReversed="true" Focusable="false">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="ScrollBarThumb" ToolTip="Naciśnij i przeciągnij suwak, aby przesunąć listę obszarów." Background="{TemplateBinding Foreground}" Style="{StaticResource ScrollThumbs}" />
+                                    </Track.Thumb>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="false" />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="false" />
+                                    </Track.DecreaseRepeatButton>
+                                </Track>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="ScrollBarThumb" Property="Visibility" Value="Collapsed" />
+                                </Trigger>
+                                <Trigger Property="Orientation" Value="Horizontal">
+                                    <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Width" Value="20" />
+                                    <Setter Property="Height" Value="8" />
+                                    <Setter TargetName="ScrollBarThumb" Property="Tag" Value="Horizontal" />
+                                    <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                    <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
