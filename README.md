@@ -75,7 +75,7 @@ Po uruchomieniu aplikacji sprawdza ona:
 - kontrola wersji aplikacji.
 Gdy któryś z warunków jest nie spełniony informuje użytkownika i wyłącza aplikację.
 
-Po przejściu pierwszych króków aplikacja zezwana zaznaczyć opcje:
+Po przejściu pierwszych króków aplikacja zezwala zaznaczyć opcje:
 - Automatyczne odświeżanie aplikacji. - włącza/wyłącza odświeżanie aplikacji o częstotliwości 5 sekund,
 - Otwieraj wybrany obszar automatycznie. - po zaznaczeniu tej opcji i kliknięciu w wybrany obszar zapisywany jest wybór użytkownika. Przy następnym uruchomieniu aplikacji włączy on wybrany wcześniej obszar automatycznie. By wyłączyć tę opcję należy cofnąć się do okna wyboru obszaru.
 
