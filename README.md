@@ -17,16 +17,25 @@ Przegląd działania aplikacji. Czarne obrysy wyskakujących okien wygenerował 
 
 ![first_page_view](https://i.im.ge/2022/10/04/1f7kCm.first-screen.gif)
 
+https://i.im.ge/2022/10/04/1f7kCm.first-screen.gif - jeśli nie wyświetla.
+
 - Strona główna obszaru z poziomu osoby niezalogowanej:
 
-![til](https://i.im.ge/2022/10/04/1fDovy.second-view.gif)
+![home_page_view](https://i.im.ge/2022/10/04/1fDovy.second-view.gif)
+
+https://i.im.ge/2022/10/04/1fDovy.second-view.gif - jeśli nie wyświetla.
 
 - Strona główna obszaru z poziomu administratora:
 
 ![home_page_view_from_admin](https://i.im.ge/2022/10/04/1fDdMX.home-page.gif)
 
+https://i.im.ge/2022/10/04/1fDdMX.home-page.gif - jeśli nie wyświetla.
+
 - Wszystkie strony z poziomu administratora:
+
 ![all_pages_view_from_admin](https://i.im.ge/2022/10/04/1fDIND.generally.gif)
+
+https://i.im.ge/2022/10/04/1fDIND.generally.gif - jeśli nie wyświetla.
 
 
 ## Instalacja
@@ -86,4 +95,3 @@ W oknie:
 - urlopów - wnioskowanie o urlopy, akeptacja, ustalanie swiąt,
 - wykresów - wyświetlania wykresów z poprzednich lat, modyfikowania bieżącego roku,
 - administratora - modyfikowanie opcji obszaru.
-
