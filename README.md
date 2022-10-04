@@ -61,6 +61,13 @@ w pliku:
 
 Następnie trzeba skompilować i uruchomić aplikację.
 
+Dane do logowania na przykładowe obszary to:
+- poziom właściciela: twlasciciel/twlasciciel
+- poziom administratora:  tadministrator/tadministrator
+- poziom mistrza: mtestowy/mtestowy
+- poziom technika: ttestowy/ttestowy
+
+Po zalogowaniu się na konta zapyta o podanie nowego hasła. Proszę wpisać takie jak przy pierwszym logowaniu.
 ## Szczegółowy opis aplikacji
 Po uruchomieniu aplikacji sprawdza ona:
 - połączenie z bazą danych,
