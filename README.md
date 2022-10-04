@@ -19,7 +19,7 @@ Przegląd działania aplikacji. Czarne obrysy wyskakujących okien wygenerował 
 
 - Strona główna obszaru z poziomu osoby niezalogowanej:
 
-![all_pages_view](https://i.im.ge/2022/10/04/1fDovy.second-view.gif)
+![til](https://i.im.ge/2022/10/04/1fDovy.second-view.gif)
 
 - Strona główna obszaru z poziomu administratora:
 
@@ -83,6 +83,7 @@ W oknie:
 - stanowisk - można dodawać/usuwać/modyfikować stanowiska (usuwać, tylko wtedy gdy nie mają powiązania z akcjami),
 - zmian - ustalać zmiany oraz warunki podświetlania strony głownej,
 - pracy w weekend - ustalanie pracy w weekend,
+- urlopów - wnioskowanie o urlopy, akeptacja, ustalanie swiąt,
 - wykresów - wyświetlania wykresów z poprzednich lat, modyfikowania bieżącego roku,
 - administratora - modyfikowanie opcji obszaru.
 
