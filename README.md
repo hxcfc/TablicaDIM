@@ -1,5 +1,5 @@
 
-# Tablica DIM Aplikacja stworzona w 2022 roku :)
+# Tablica DIM Aplikacja stworzona w 2021/2022 roku :)
 Aplikacja została stworzona by wspomóc zarządzanie całym działem utrzymania ruchu 
 składającym się z obszarów.
 
